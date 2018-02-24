@@ -19,7 +19,7 @@ public interface Pool {
      * 2、控制获了连接的时间
      * @return
      */
-    public Jedis getResource();
+    public Jedis getResource() throws InterruptedException;
 
     /**
      * 释放连接
