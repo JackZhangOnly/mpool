@@ -71,8 +71,9 @@ public class RedisPool implements Pool
     public void release(Jedis jedis) {
        if ( busy.remove(jedis)){
            idle.offer(jedis);
+           return;
        }
-        if (activeCounter.get()<0){
+        if (activeCounter.decrementAndGet()>=0){
             activeCounter.decrementAndGet();
         }
     }
